@@ -1,184 +1,211 @@
 # 🧠 Wiki Quiz Generator
 
-A full-stack web application that scrapes Wikipedia articles and generates structured, AI-powered quizzes with difficulty levels, explanations, and related topics.  
-Built using **FastAPI**, **PostgreSQL**, **React**, and **Tailwind CSS**.
+A modern full-stack application that transforms Wikipedia articles into interactive, AI-powered quizzes with intelligent difficulty assessment and comprehensive explanations.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-### 🔹 Quiz Generation
-- Paste any Wikipedia URL
-- Automatically extracts:
-  - Title
-  - Summary
-  - Key sections
-- Generates a quiz with:
-  - Question text
-  - Four multiple-choice options (A–D)
-  - Correct answer
-  - Short explanation
-  - Difficulty level (Easy / Medium / Hard)
-  - Suggested related Wikipedia topics
+### 📚 Intelligent Quiz Generation
+- **Smart Content Extraction**: Paste any Wikipedia URL to automatically extract article structure
+- **AI-Powered Questions**: Generates contextually relevant multiple-choice questions
+- **Difficulty Classification**: Automatic labeling (Easy/Medium/Hard) based on content complexity
+- **Detailed Explanations**: Each answer includes educational context
+- **Topic Discovery**: Suggests related Wikipedia articles for deeper learning
 
-### 🔹 Data Persistence
-- All scraped and generated data is stored in **PostgreSQL**
-- Prevents duplicate URLs
-- Reusable quiz history
+### 💾 Persistent Storage
+- PostgreSQL database for reliable data storage
+- Duplicate URL prevention
+- Complete quiz history with instant access
+- Efficient data retrieval and caching
 
-### 🔹 History & Review
-- View all previously generated quizzes
-- Click **Details** to open a modal with the full quiz
-- Reuses the same structured quiz layout
-
-### 🔹 Clean UI
-- Modern, minimal design
-- Card-based layout
-- Difficulty badges
-- Responsive and user-friendly
+### 🎯 User Experience
+- **Dual Interface**: Separate tabs for quiz generation and history review
+- **Modal-Based Details**: Expandable quiz viewer without page navigation
+- **Visual Difficulty Indicators**: Color-coded badges for quick scanning
+- **Responsive Design**: Seamless experience across devices
 
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Technology Stack
 
 ### Backend
-- **FastAPI**
-- **SQLAlchemy**
-- **PostgreSQL**
-- Wikipedia scraping (BeautifulSoup)
-- AI-powered quiz generation
+- **FastAPI** – High-performance Python web framework
+- **SQLAlchemy** – SQL toolkit and ORM
+- **PostgreSQL** – Robust relational database
+- **BeautifulSoup** – Wikipedia content scraping
+- **Groq API** – AI-powered quiz generation
 
 ### Frontend
-- **React (Vite)**
-- **Tailwind CSS**
-- Fetch API
-- Modal-based UI
+- **React 18** with **Vite** – Fast, modern UI framework
+- **Tailwind CSS** – Utility-first styling
+- **Fetch API** – Asynchronous data handling
+- **Component-Based Architecture** – Reusable, maintainable code
 
 ---
 
-## 📁 Project Structure
-
+## 📁 Project Architecture
+```
 deepklarity-wiki-quiz/
 ├── backend/
-│ ├── main.py
-│ ├── database.py
-│ ├── models.py
-│ ├── crud.py
-│ ├── services/
-│ │ ├── scraper.py
-│ │ └── quiz_generator.py
-│ └── requirements.txt
+│   ├── main.py                 # FastAPI application entry
+│   ├── database.py             # Database configuration
+│   ├── models.py               # SQLAlchemy models
+│   ├── crud.py                 # Database operations
+│   ├── services/
+│   │   ├── scraper.py          # Wikipedia extraction
+│   │   └── quiz_generator.py  # AI quiz generation
+│   └── requirements.txt        # Python dependencies
 │
 ├── frontend/
-│ ├── src/
-│ │ ├── App.jsx
-│ │ ├── main.jsx
-│ │ └── components/
-│ ├── index.html
-│ ├── tailwind.config.js
-│ └── package.json
+│   ├── src/
+│   │   ├── App.jsx             # Main application component
+│   │   ├── main.jsx            # React entry point
+│   │   └── components/         # Reusable UI components
+│   ├── index.html
+│   ├── tailwind.config.js
+│   └── package.json
 │
+├── .gitignore
 └── README.md
-
-## 🚀 Getting Started
-
-### 🛠 Prerequisites
-- Python 3.10+
-- PostgreSQL
-- Node.js & npm
-- Git
+```
 
 ---
 
-## 📦 Backend Setup
+## 🚀 Installation & Setup
 
+### Prerequisites
+- **Python** 3.10 or higher
+- **PostgreSQL** 12 or higher
+- **Node.js** 18+ and npm
+- **Git** for version control
+
+### 1️⃣ Backend Configuration
 ```bash
+# Navigate to backend directory
 cd backend
 
+# Create and activate virtual environment
 python -m venv venv
-source venv/bin/activate   # Windows: venv\Scripts\activate
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
+# Install dependencies
 pip install -r requirements.txt
 
-Create .env file (DO NOT COMMIT)
-
+# Create .env file with your credentials
+cat > .env << EOF
 DATABASE_URL=postgresql://username:password@localhost:5432/wikiquiz
-GROQ_API_KEY=your_api_key_here
+GROQ_API_KEY=your_groq_api_key_here
+EOF
 
-Run backend
-
+# Start the server
 uvicorn main:app --reload
+```
 
-Backend runs at:
+**Backend runs at:** `http://127.0.0.1:8000`
 
-http://127.0.0.1:8000
-
-🧑‍💻 Frontend Setup
+### 2️⃣ Frontend Configuration
+```bash
+# Navigate to frontend directory
 cd frontend
 
-Install dependencies
+# Install dependencies
 npm install
 
-Start frontend
+# Start development server
 npm run dev
+```
 
+**Frontend runs at:** `http://127.0.0.1:5173`
 
-Frontend runs at:
+---
 
-http://127.0.0.1:5173
+## 📡 API Reference
 
-📡 API Endpoints
-Method	Endpoint	Description
-GET	/scrape-and-save?url=	Scrape & store Wikipedia data
-GET	/generate-quiz?url=	Generate quiz from URL
-GET	/history	Fetch quiz history
-GET	/quiz/{id}	Get full quiz details
-🛡 Environment Variables
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/scrape-and-save?url=` | Scrape Wikipedia and store content |
+| `GET` | `/generate-quiz?url=` | Generate quiz from Wikipedia URL |
+| `GET` | `/history` | Retrieve all quiz history |
+| `GET` | `/quiz/{id}` | Fetch specific quiz details |
 
-The .env file must not be pushed to GitHub.
+---
 
-Add this to .gitignore:
+## 🔒 Security & Configuration
 
+### Environment Variables
+
+Create a `.env` file in the `backend/` directory (never commit this file):
+```env
+DATABASE_URL=postgresql://username:password@localhost:5432/wikiquiz
+GROQ_API_KEY=your_api_key_here
+```
+
+### .gitignore Configuration
+
+Ensure your `.gitignore` includes:
+```
+# Environment files
 .env
+.env.local
 
-🎨 UI Overview
-🧩 Tab 1 – Generate Quiz
+# Python
+__pycache__/
+*.py[cod]
+venv/
 
-Paste Wikipedia URL
+# Node
+node_modules/
+dist/
+```
 
-Click Generate Quiz
+---
 
-View structured quiz with:
+## 🎨 Application Interface
 
-Difficulty badges
+### Generate Quiz Tab
+1. Paste any Wikipedia URL into the input field
+2. Click **Generate Quiz** to process the article
+3. View the generated quiz with:
+   - Color-coded difficulty badges
+   - Multiple-choice options (A–D)
+   - Correct answers highlighted
+   - Detailed explanations
+   - Related topic suggestions
 
-Answers & explanations
+### History Tab
+- Browse all previously generated quizzes
+- Click **Details** to view full quiz in a modal
+- Consistent layout and styling across all quizzes
 
-Related topics
+---
 
-📜 Tab 2 – History
+## 🚀 Future Enhancements
 
-List of past quizzes
+- [ ] **Interactive Quiz Mode** – Hide answers for self-testing
+- [ ] **Question Shuffling** – Randomize order for repeated practice
+- [ ] **User Authentication** – Personal quiz collections
+- [ ] **Export Functionality** – PDF/JSON quiz downloads
+- [ ] **Deployment** – Render, Railway, or Vercel hosting
+- [ ] **Quiz Analytics** – Track performance and topics
 
-Click Details to open quiz modal
+---
 
-🧪 Optional Enhancements
+## 📄 License
 
-Take Quiz mode (answers hidden)
+This project is licensed under the **MIT License**.
 
-Question shuffling
+---
 
-User authentication
+## 👨‍💻 Author
 
-Deployment (Render / Railway / Vercel)
+**Swathi Mengani**  
+GitHub: [@Swathimengani](https://github.com/Swathimengani)
 
-📜 License
+---
 
-MIT License
+<div align="center">
 
-🙌 Author
+**Built with ❤️ using FastAPI, React, and AI**
 
-Swathi Mengani
-GitHub: https://github.com/Swathimengani
-
-Built with ❤️ using FastAPI & React
+</div>
