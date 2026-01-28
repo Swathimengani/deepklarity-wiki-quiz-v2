@@ -183,16 +183,19 @@ dist/
 ## ⭐ Screenshots
 
 ### 🏠 Home – Generate Quiz
-![Generate Quiz Page](screenshots/wiki_quiz_dashboard.png)
+![Generate Quiz Page]<img width="1915" height="1006" alt="wiki_quiz_dashboard" src="https://github.com/user-attachments/assets/ce5161b9-27e3-49d5-9015-98212832e132" />
+
 
 ### 📜 Past Quizzes
-![Past Quizzes](screenshots/pastquizzes_list.png)
+![Past Quizzes]<img width="1914" height="1006" alt="pastquizzes_list" src="https://github.com/user-attachments/assets/ff19d36b-fb93-4fb8-a8ce-a16bd46aa3e9" />
 
 ### 🧠 Generated Quiz View
-![Generated Quiz](screenshots/generatedquiz.png)
+![Generated Quiz] <img width="1919" height="996" alt="generated_quiz" src="https://github.com/user-attachments/assets/d12abdf6-4988-4795-9c8c-4cebd2a89789" />
+
 
 ### 📋 Quiz Details Modal
-![Quiz Details Modal](screenshots/pastquiz.png)
+![Quiz Details Modal]<img width="1914" height="1001" alt="pastquiz" src="https://github.com/user-attachments/assets/899253b4-dfae-4b73-af21-00abdd9bbd23" />
+
 
 
 ## 🚀 Future Enhancements
