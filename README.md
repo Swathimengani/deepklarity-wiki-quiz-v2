@@ -180,6 +180,21 @@ dist/
 
 ---
 
+## ⭐ Screenshots
+
+### 🏠 Home – Generate Quiz
+![Generate Quiz Page](screenshots/wiki_quiz_dashboard.png)
+
+### 📜 Past Quizzes
+![Past Quizzes](screenshots/pastquizzes_list.png)
+
+### 🧠 Generated Quiz View
+![Generated Quiz](screenshots/generatedquiz.png)
+
+### 📋 Quiz Details Modal
+![Quiz Details Modal](screenshots/pastquiz.png)
+
+
 ## 🚀 Future Enhancements
 
 - [ ] **Interactive Quiz Mode** – Hide answers for self-testing
