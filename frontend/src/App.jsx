@@ -5,14 +5,13 @@ function App() {
   const [url, setUrl] = useState("")
   const [loading, setLoading] = useState(false)
   const [quiz, setQuiz] = useState(null)
-  const [setError] = useState("")
+  const [error, setError] = useState("")
 
   const [history, setHistory] = useState([])
   const [historyLoading, setHistoryLoading] = useState(false)
 
   const [selectedQuiz, setSelectedQuiz] = useState(null)
   const [modalOpen, setModalOpen] = useState(false)
-
 
   // ---------------- GENERATE QUIZ ----------------
   const generateQuiz = async () => {
@@ -21,15 +20,16 @@ function App() {
       setLoading(true)
 
       const encodedUrl = encodeURIComponent(url)
+
       const response = await fetch(
         `http://127.0.0.1:8000/generate-quiz?url=${encodedUrl}`
       )
 
-      if (!response.ok) throw new Error()
+      if (!response.ok) throw new Error("Request failed")
 
       const data = await response.json()
       setQuiz(data)
-    } catch {
+    } catch{
       setError("Failed to fetch quiz")
     } finally {
       setLoading(false)
@@ -113,6 +113,12 @@ function App() {
               {loading ? "Generating..." : "Generate Quiz"}
             </button>
 
+            {error && (
+              <p className="text-red-400 text-sm mt-4 text-center">
+                {error}
+              </p>
+            )}
+
             {quiz && (
               <div className="mt-10 space-y-6">
                 <QuizContent quiz={quiz} />
@@ -185,7 +191,7 @@ function App() {
   )
 }
 
-// ---------------- QUIZ CONTENT COMPONENT ----------------
+// ---------------- QUIZ CONTENT ----------------
 function QuizContent({ quiz }) {
   const difficultyColor = (level) => {
     if (level === "easy") return "bg-green-600"
